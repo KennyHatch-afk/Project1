@@ -61,26 +61,23 @@ const onRequest = (request, response) => {
   if (request.method === 'POST'){
     //If the requset's method is a post then handle it
     handlePost(request, response, parsedUrl);
-  }
-  else{
+  }else if(request.url.slice(-1) === "T"){
     //Otherwise check if the last character in the url is a T, if so then it is a request for a type image
-    if(request.url.slice(-1) === "T"){
-      mediaHandler.getType(request, response, request.url.slice(1, -1));
-    }else if(urlStruct[request.method][parsedUrl.pathname]){
-      //Otherwise if the url exists in the struct
-      const bodyParams = query.parse(parsedUrl.query);
-  
-      if(Object.keys(bodyParams).length === 1){
-        //If the remaining url has parameters then send them
-        urlStruct[request.method][parsedUrl.pathname](request, response, request.method, bodyParams["fairyCheck"]);
-      } else {
-        //If not just call
-        urlStruct[request.method][parsedUrl.pathname](request, response, request.method);
-      }
+    mediaHandler.getType(request, response, request.url.slice(1, -1));
+  }else if(urlStruct[request.method][parsedUrl.pathname]){
+    //Otherwise if the url exists in the struct
+    const bodyParams = query.parse(parsedUrl.query);
+    
+    if(Object.keys(bodyParams).length === 1){
+      //If the remaining url has parameters then send them
+      urlStruct[request.method][parsedUrl.pathname](request, response, request.method, bodyParams["fairyCheck"]);
     } else {
-        //If not then send 404
-        jsonHandler.notReal(request, response);
+      //If not just call
+      urlStruct[request.method][parsedUrl.pathname](request, response, request.method);
     }
+  } else {
+    //If not then send 404
+    jsonHandler.notReal(request, response);
   }
 };
 
