@@ -92,10 +92,8 @@ const checkCoverage = (request, response, method, params) => {
     //Check the returned JSON data for the types it deals double damage to
     Object.keys(
       res.data.damage_relations.double_damage_to
-    ).forEach(function(
-    key1
-    ){
-      //checked = false;
+      ).forEach(function(key1){
+      checked = false;
       //If fairy is to be excluded
       if(params)
       {
