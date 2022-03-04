@@ -90,9 +90,10 @@ const checkCoverage = (request, response, method, params) => {
     let checked = false;
 
     //Check the returned JSON data for the types it deals double damage to
-    Object.keys(res.data.damage_relations.double_damage_to).forEach(function(key1){
+    Object.keys(
+      res.data.damage_relations.double_damage_to
+    ).forEach(function(key1){
       checked = false;
-
       //If fairy is to be excluded
       if(params)
       {
@@ -102,7 +103,6 @@ const checkCoverage = (request, response, method, params) => {
           checked = true;
         }
       }
-
       //If the value being returned is a repeat, don't return it.
       Object.keys(offensiveCoverage).forEach(function(key2){
         if(res.data.damage_relations.double_damage_to[key1].name === offensiveCoverage[key2].name)
@@ -125,10 +125,13 @@ const checkCoverage = (request, response, method, params) => {
     {
       return respondJSONMeta(request, response, 200);
     }
-    
+
     //Return remaining data
     return respondJSON(request, response, 200, offensiveCoverage);
   });
+
+  //Return remaining data
+  return respondJSON(request, response, 200, offensiveCoverage);
 };
   
 //If a 404 not real error was sent, respond with appropriate body

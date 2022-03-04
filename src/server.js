@@ -71,7 +71,9 @@ const onRequest = (request, response) => {
     
     if(Object.keys(bodyParams).length === 1){
       //If the remaining url has parameters then send them
-      urlStruct[request.method][parsedUrl.pathname](request, response, request.method, bodyParams["fairyCheck"]);
+      urlStruct[request.method][parsedUrl.pathname](
+        request, response, request.method, bodyParams["fairyCheck"]
+      );
     } else {
       //If not just call
       urlStruct[request.method][parsedUrl.pathname](request, response, request.method);
