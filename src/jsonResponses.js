@@ -95,7 +95,7 @@ const checkCoverage = (request, response, method, params) => {
     ).forEach(function(
     key1
     ){
-      checked = false;
+      //checked = false;
       //If fairy is to be excluded
       if(params)
       {
