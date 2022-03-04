@@ -62,7 +62,8 @@ const onRequest = (request, response) => {
     //If the requset's method is a post then handle it
     handlePost(request, response, parsedUrl);
   }else if(request.url.slice(-1) === "T"){
-    //Otherwise check if the last character in the url is a T, if so then it is a request for a type image
+    //Otherwise check if the last character in the url is a T,
+    //if so then it is a request for a type image
     mediaHandler.getType(request, response, request.url.slice(1, -1));
   }else if(urlStruct[request.method][parsedUrl.pathname]){
     //Otherwise if the url exists in the struct

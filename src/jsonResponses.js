@@ -67,7 +67,7 @@ const addType = (request, response, body) => {
 };
 
 //Pull from external API to check weaknesses and relay them to client
-const checkCoverage = async (request, response, method, params) => {
+const checkCoverage = (request, response, method, params) => {
   const responseJSON = {};
 
   //If the button was pressed while no values are stored, then give 400 bad request error.
@@ -125,11 +125,10 @@ const checkCoverage = async (request, response, method, params) => {
     {
       return respondJSONMeta(request, response, 200);
     }
-
+    
+    //Return remaining data
+    return respondJSON(request, response, 200, offensiveCoverage);
   });
-  
-  //Return remaining data
-  return respondJSON(request, response, 200, offensiveCoverage);
 };
   
 //If a 404 not real error was sent, respond with appropriate body
