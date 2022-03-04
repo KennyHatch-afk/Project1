@@ -48,15 +48,13 @@ const types =
 
 //Get types then send image related to type
 const getType = (request, response, type) => {
-    if(types[type])
-    //If the type exists, send related image
-    {
+    if(types[type]){
+        //If the type exists, send related image
         response.writeHead(200, { 'Content-Type': 'image/webp' });
         response.write(types[type]);
     }
-    else
-    //Else send 404 not found error
-    {
+    else{
+        //Else send 404 not found error
         const responseJSON = {
             message: 'No such type exists',
             id: 'notFound',
@@ -73,7 +71,7 @@ const getType = (request, response, type) => {
 };
 
 //Send requested background image
-const getBackground = (request, response, type) => {
+const getBackground = (request, response) => {
     response.writeHead(200, { 'Content-Type': 'image/png' });
     response.write(background);
     response.end();
